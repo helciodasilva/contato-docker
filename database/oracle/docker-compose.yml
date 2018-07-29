@@ -1,0 +1,11 @@
+version: '3'
+services:
+  oracle:
+    image: wnameless/oracle-xe-11g
+    container_name: oracle
+    ports:
+     - 22:22
+     - 1521:1521
+     - 8005:8080
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d

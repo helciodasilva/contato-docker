@@ -1,0 +1,10 @@
+-- Drop user
+DROP USER contato CASCADE;
+
+-- Create user
+CREATE USER contato IDENTIFIED BY contato;
+GRANT RESOURCE TO contato;
+GRANT CONNECT TO contato;
+GRANT CREATE VIEW TO contato;
+GRANT CREATE SESSION TO contato;
+GRANT UNLIMITED TABLESPACE TO contato;
