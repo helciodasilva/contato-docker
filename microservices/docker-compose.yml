@@ -1,0 +1,37 @@
+version: '2.1'
+services:
+  contato-config-service:
+    build:
+        context: .
+        dockerfile: Dockerfile/contato-config-service
+    container_name: contato-config-service
+    ports:
+     - "8888:8888"
+  contato-eureka-server:
+    build:
+        context: .
+        dockerfile: Dockerfile/contato-eureka-server
+    container_name: contato-eureka-server
+    ports:
+     - "8761:8761"
+  contato-zuul-gateway:
+    build:
+        context: .
+        dockerfile: Dockerfile/contato-zuul-gateway
+    container_name: contato-zuul-gateway
+    ports:
+     - "8083:8083"
+  contato-api:
+    build:
+        context: .
+        dockerfile: Dockerfile/contato-api
+    container_name: contato-api
+    ports:
+     - "8080:8080"
+  contato-client:
+    build:
+        context: .
+        dockerfile: Dockerfile/contato-client
+    container_name: contato-client
+    ports:
+     - "8081:8081"     

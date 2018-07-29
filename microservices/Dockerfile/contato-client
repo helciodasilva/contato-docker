@@ -1,0 +1,17 @@
+FROM alpine/git as clone
+WORKDIR /app
+RUN git clone https://github.com/helciodasilva/contato-client.git  /app/project
+
+FROM gradle:4.2.1-jdk8-alpine as build
+WORKDIR /app
+COPY --from=clone /app/project /app
+USER root
+RUN chown -R gradle /app
+USER gradle
+RUN gradle b -x test
+
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY --from=build /app/build/libs/contato-client-1.0.0.jar /app
+RUN ls -h -R /app/
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/contato-client-1.0.0.jar"]
